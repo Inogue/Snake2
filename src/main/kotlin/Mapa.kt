@@ -9,6 +9,7 @@ class Mapa(tamaño: Int){
                 mapa[x].add(Vacio())
             }
         }
+        // nou codi
 
         this.mapa = mapa
     }
