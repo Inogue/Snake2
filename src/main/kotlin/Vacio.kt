@@ -1,6 +1,6 @@
-class Vacio: Casilla(0,0) {
+class Vacio() {
 
-    override fun toString(): String {
-        return " · "
+    fun vacio(): String? {
+        return null
     }
 }

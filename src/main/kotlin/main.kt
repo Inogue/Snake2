@@ -1,21 +1,12 @@
 fun main() {
-    val mapa = Mapa(10)
-    val tablero = mapa.mapa
+    println("Dime el tamaño del mapa")
+    val tamaño = readln().toInt()
+    val mapa = Mapa(tamaño)
+    mapa.inicio(tamaño)
+    //val ventana=Ventana("Patata")
+    //  val teclado=ventana.eventoTeclado()
+    // val event=ventana.evento()
+//val menu = Menu()
+    //val inicio = menu.visual1()
 
-    repeat(tablero.size + 1) {
-        print(" # ")
-    }
-
-    println()
-    for (fila in tablero) {
-        print("# ")
-        for (casilla in fila) {
-            print("$casilla")
-        }
-        println(" #")
-    }
-
-    repeat(tablero.size + 1) {
-        print(" # ")
-    }
 }

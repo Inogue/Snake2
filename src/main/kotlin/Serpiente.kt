@@ -1,3 +1,7 @@
-class Serpiente: Casilla(0,0) {
+class Serpiente(){
+
+    override fun toString(): String {
+        return " ■ "
+    }
 
 }
