@@ -1,12 +1,12 @@
-class Mapa(tamaño: Int) {
+class Mapa(tamano: Int) {
     val void=Vacio().vacio()
     var mapa: List<ArrayList<Any?>>
 
     init {
         val mapa = arrayListOf<ArrayList<Any?>>()
-        for (x in 0..tamaño - 1) {
+        for (x in 0..tamano - 1) {
             mapa.add(arrayListOf())
-            for (y in 0..tamaño - 1) {
+            for (y in 0..tamano - 1) {
                 mapa[x].add(void)
             }
         }

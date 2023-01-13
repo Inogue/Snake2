@@ -1,8 +1,8 @@
 fun main() {
     println("Dime el tamaño del mapa")
-    val tamaño = readln().toInt()
-    val mapa = Mapa(tamaño)
-    mapa.inicio(tamaño)
+    val tamano = readln().toInt()
+    val mapa = Mapa(tamano)
+    mapa.inicio(tamano)
     //val ventana=Ventana("Patata")
     //  ventana.eventoTeclado()
     // ventana.evento()
