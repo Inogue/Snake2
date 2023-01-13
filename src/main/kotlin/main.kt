@@ -4,9 +4,9 @@ fun main() {
     val mapa = Mapa(tamaño)
     mapa.inicio(tamaño)
     //val ventana=Ventana("Patata")
-    //  val teclado=ventana.eventoTeclado()
-    // val event=ventana.evento()
+    //  ventana.eventoTeclado()
+    // ventana.evento()
 //val menu = Menu()
-    //val inicio = menu.visual1()
+    //menu.visual1()
 
 }

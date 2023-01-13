@@ -1,5 +1,5 @@
 class Mapa(tamaño: Int) {
-    val void = Vacio().vacio()
+    val void=Vacio().vacio()
     var mapa: List<ArrayList<Any?>>
 
     init {
@@ -14,24 +14,12 @@ class Mapa(tamaño: Int) {
     }
 
     fun inicio(tamano: Int) {
-        val mapa2 = arrayListOf<ArrayList<Any?>>()
-        var posi = 0
-        for (x in 0..tamano - 1) {
-            mapa2.add(arrayListOf())
-            for (y in 0..tamano - 1) {
-                if (mapa[0][0] == null && x == 0 && y == 0) {
-                    mapa2[x].add(Serpiente())
-                    posi = x
-                } else if (mapa[x][y] == null) {
-                    mapa2[x].add(void)
-                }
-            }
-        }
+        val posi=0
         actualizar(posi)
     }
 
     fun actualizar(posicion: Int) {
-        Thread.sleep(500)
+        Thread.sleep(1500)
         mapa[0][posicion] = Serpiente()
         bordes()
         if (posicion < mapa.size - 1) {
