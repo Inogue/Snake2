@@ -1,4 +1,4 @@
-class Menu {
+class Menu() {
     fun visual1(){
         val salida="!"
         println("SELECCIONA UN MODO DE JUEGO")
@@ -22,7 +22,7 @@ if(respuesta.toInt()==1){
             println("¡¡ADIOS!!")
     }
     else{
-        println("HAS DE DECIDIR ALGO CON LOS NUMEROS CATETO")
+        println("HAS DE DECIDIR ALGO CON LOS NUMEROS")
     respuesta= readln()
     }
 

@@ -1,61 +1,81 @@
-class Mapa(tamano: Int) {
-    val void=Vacio().vacio()
+import javax.swing.Icon
+
+open class Mapa(tamano: Int) {
     var mapa: List<ArrayList<Any?>>
 
     init {
         val mapa = arrayListOf<ArrayList<Any?>>()
-        for (x in 0..tamano - 1) {
+        for (x in 0 until tamano) {
             mapa.add(arrayListOf())
-            for (y in 0..tamano - 1) {
-                mapa[x].add(void)
+            for (y in 0 until tamano) {
+                mapa[x].add(Iconos.MAPA)
             }
+
         }
+        mapa[0][6] = Iconos.MANZANA
+        mapa[0][5] = Iconos.MANZANA
+        mapa[0][2] = Iconos.MANZANA
         this.mapa = mapa
     }
 
     fun inicio(tamano: Int) {
-        val posi=0
-        actualizar(posi)
+        val posi = 0
+        val serTamano=0
+        actualizar(posi, serTamano)
     }
 
-    fun actualizar(posicion: Int) {
-        Thread.sleep(1500)
-        mapa[0][posicion] = Serpiente()
-        bordes()
+    fun actualizar(posicion: Int, tamano: Int) {
+        Thread.sleep(Iconos.REFRESH)
+        //val movi=Movimiento(posicion, tamano).movment()
+        try {
+            if (mapa[0][posicion + 1] == Iconos.MANZANA) {
+                mapa[0][posicion] = Iconos.SERPIENTE
+                printaBordes()
+                actualizar(posicion + 1, tamano + 1)
+            }
+        }catch(e: IndexOutOfBoundsException){
+            mapa[0][posicion] = Iconos.SERPIENTE
+for(elem in 0..tamano) {
+    mapa[0][posicion - elem] = Iconos.MAPA
+}
+}
+               mapa[0][posicion] = Iconos.SERPIENTE
+
+
+if(tamano>0){
+    suma(posicion, tamano)
+}
         if (posicion < mapa.size - 1) {
-            mapa[0][posicion] = void
-            actualizar(posicion + 1)
-        }
+            printaBordes()
+                mapa[0][posicion-tamano] = Iconos.VACIO
+                actualizar(posicion + 1, tamano)
+            }
 
     }
 
+    fun suma(posicion: Int, serTamano: Int) {
+for(elem in 0..serTamano) {
+    mapa[0][posicion - elem] = Iconos.SERPIENTE
 
-//    fun actualizar(mapa3: ArrayList<ArrayList<Any?>>, posicion: Int) {
-//        val mapa2 = arrayListOf<ArrayList<Any?>>()
-//        var contador = posicion
-//
-//        for (x in 0..mapa.size - 1) {
-//            mapa2.add(arrayListOf())
-//            for (y in 0..mapa.size - 1) {
-//                if (mapa3[contador][contador] == null && x == contador && y == contador) {
-//                    mapa2[contador].add(Serpiente())
-//                    contador += 1
-//                } else if (mapa[x][y] == null) {
-//                    mapa2[x].add(void)
-//                } else if (contador >= mapa.size - 1) {
-//                    break
-//                }
-//            }
-//        }
-//        bordes(mapa2)
-//        for (elem in mapa2) {
-//            println(elem)
-//        }
-//
-//    }
+}
+    }
 
+    /*/  fun suma(posicion: Int, serTamano: Int) {
+          Thread.sleep(Iconos.REFRESH)
 
-    fun bordes() {
+          mapa[0][posicion] = Iconos.SERPIENTE
+          mapa[0][posicion - 1] = Iconos.SERPIENTE
+
+          printaBordes()
+          if (posicion <= mapa.size) {
+              mapa[0][posicion] = Iconos.MAPA
+              mapa[0][posicion - 1] = Iconos.MAPA
+              suma(posicion + 1, serTamano)
+          }
+
+      }
+  */
+    fun printaBordes() {
         repeat(mapa.size + 1) {
             print(" # ")
         }
@@ -65,7 +85,7 @@ class Mapa(tamano: Int) {
             print("# ")
 
             for (casilla in fila) {
-                print(casilla ?: " · ")
+                print(casilla ?: Iconos.VACIO)
             }
 
             println(" #")
