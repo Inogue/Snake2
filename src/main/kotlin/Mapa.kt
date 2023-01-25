@@ -60,7 +60,7 @@ open class Mapa(tamano: Int) {
             }
         }
 if(!confirm){
-    mapa[(0 until tamano).random()][(1 until tamano).random()] = Iconos.MANZANA
+    mapa[(0 until tamano).random()][(0 until tamano).random()] = Iconos.MANZANA
 }
 
     }
