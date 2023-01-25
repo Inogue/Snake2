@@ -3,6 +3,6 @@ object Iconos {
     const val SERPIENTE = " ■ "
     const val MANZANA = " O "
 val MAPA= null
-const val  REFRESH=1500.toLong()
+const val  REFRESH=1000.toLong()
 }
 

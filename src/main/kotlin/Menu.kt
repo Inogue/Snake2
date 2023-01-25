@@ -2,7 +2,7 @@ class Menu() {
     fun visual1(){
         val salida="!"
         println("SELECCIONA UN MODO DE JUEGO")
-        println("1-MODO PUNTUOS")
+        println("1-MODO PUNTOS")
         println("2-MODO INFINITO")
         println("3-VER RECORD")
         println("4-SALIR")
