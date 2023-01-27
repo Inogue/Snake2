@@ -1,5 +1,7 @@
+import java.lang.IndexOutOfBoundsException
+
 open class Mapa(tamano: Int) {
-    var mapa: List<ArrayList<Any?>>
+    private var mapa: List<ArrayList<Any?>>
 
     init {
         val mapa = arrayListOf<ArrayList<Any?>>()
@@ -16,33 +18,35 @@ open class Mapa(tamano: Int) {
     fun inicio(tamano: Int) {
         val posi = 0
         val serTamano = 0
+        mapa[0][0] = Iconos.SERPIENTE
         actualizar(tamano, posi, serTamano)
     }
 
-    fun actualizar(tamano: Int, posicion: Int, serTamano: Int) {
+    private fun actualizar(tamano: Int, posicion: Int, serTamano: Int) {
         appleSpawn(tamano)
         Thread.sleep(Iconos.REFRESH)
         //val movi=Movimiento(posicion, tamano).movment()
-        if (mapa.size <= posicion + 1) {
-            actualizar(tamano, posicion + 1, serTamano)
-        }
-        if (mapa[0][posicion + 1] == Iconos.MANZANA) {
-            mapa[0][posicion] = Iconos.SERPIENTE
-            printaBordes()
-            actualizar(tamano, posicion + 1, serTamano + 1)
-        }
-
-        mapa[0][posicion] = Iconos.SERPIENTE
 
         if (serTamano > 0) {
             suma(posicion, serTamano)
         }
-        if (posicion < mapa.size - 1) {
-            printaBordes()
-            mapa[0][posicion - serTamano] = Iconos.VACIO
-            actualizar(tamano, posicion + 1, serTamano)
-        }
-    }
+       try {
+
+           if (mapa[0][posicion + 1] == Iconos.MANZANA) {
+
+               mapa[0][posicion] = Iconos.SERPIENTE
+               printaBordes()
+               actualizar(tamano, posicion + 1, serTamano + 1)
+           } else if (posicion < mapa.size - 1) {
+               printaBordes()
+               mapa[0][posicion - serTamano] = Iconos.VACIO
+               actualizar(tamano, posicion + 1, serTamano)
+           }
+       }catch (e: IndexOutOfBoundsException){
+           printaBordes()
+           return
+       }
+       }
 
     private fun suma(posicion: Int, serTamano: Int) {
         for (elem in 0..serTamano) {
@@ -50,22 +54,21 @@ open class Mapa(tamano: Int) {
 
         }
     }
-
-    private fun appleSpawn(tamano: Int)  {
-        var confirm=false
+    private fun appleSpawn(tamano: Int) {
+        var confirm = false
         for (elem in mapa) {
             for (casilla in elem) {
                 if (casilla == Iconos.MANZANA)
                     confirm = true
             }
         }
-if(!confirm){
-    mapa[(0 until tamano).random()][(0 until tamano).random()] = Iconos.MANZANA
-}
+        if (!confirm) {
+            mapa[(0 until tamano).random()][(0 until tamano).random()] = Iconos.MANZANA
+        }
 
     }
 
-    fun printaBordes() {
+    private fun printaBordes() {
         repeat(mapa.size + 1) {
             print(" # ")
         }
