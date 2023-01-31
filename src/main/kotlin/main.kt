@@ -7,12 +7,13 @@ fun main() {
     if (System.out.charset() != StandardCharsets.UTF_8)
         System.setOut(PrintStream(FileOutputStream(FileDescriptor.out), true, StandardCharsets.UTF_8))
 
-    println("Dime el tamaño del mapa")
+   /*/ println("Dime el tamaño del mapa")
     val tamano = readln().toInt()
     val mapa = Mapa(tamano)
     mapa.inicio(tamano)
-
-
+*/
+    val movimiento=Movimiento(Iconos.TAMANO)
+    movimiento.inicio()
 //val menu = Menu()
     //menu.visual1()
 
