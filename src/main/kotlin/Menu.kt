@@ -1,55 +1,65 @@
-class Menu() {
-    fun visual1(){
-        val salida="!"
-        println("SELECCIONA UN MODO DE JUEGO")
-        println("1-MODO PUNTOS")
-        println("2-MODO INFINITO")
-        println("3-VER RECORD")
-        println("4-SALIR")
-        var respuesta= readln()
-if(respuesta.toInt()==1){
-      puntuos()
-  }
-    else if(respuesta.toInt()==2){
-           infinito()
+import javax.swing.GroupLayout
+import javax.swing.JButton
+import javax.swing.JComponent
+import javax.swing.JFrame
+import javax.swing.JLabel
 
-   }
+class Menu(title: String) : JFrame() {
 
-    else if(respuesta.toInt()==3){
-                record()
-        }
-    else if(respuesta.toInt()==4){
-            println("¡¡ADIOS!!")
-    }
-    else{
-        println("HAS DE DECIDIR ALGO CON LOS NUMEROS")
-    respuesta= readln()
+    init {
+        createUI(title)
     }
 
-    }
-    fun puntuos() {
+    //Esta funcion genera la interfaz grafica con los elementos
+    private fun createUI(title: String) {
 
-        println("BIEN, HAS ELEGIDO MODO PUNTUACION, QUE DIFICULTAD QUIERES JUGAR?")
-        println("1-MODO FACIL")
-        println("2-MODO NORMAL")
-        println("3-MODO DIFICIL")
-        println("4-VOLVER AL MENU")
-        val respuesta = readln()
-    }
-    fun infinito(){
-        println("BIEN, HAS ELEGIDO MODO INFINITO, QUE MODO QUIERES JUGAR?")
-        println("1-MODO SOLITARIO")
-        println("2-MODO VS IA")
-        println("3-VOLVER AL MENU")
-        val respuesta = readln()
-    }
+        setTitle(title)
 
-    fun record(){
-        println("BIEN, HAS ELEGIDO VER LOS DE TUS PARTIDAS RECORDS")
-        println("ESTA ES TU LISTA")
-        println("LISTA")
-        println("INTRODUCE LA TECLA ! PARA VOLVER AL MENU")
-        val respuesta = readln()
+        val titulo = JLabel("SNAKE")
+        val facil = JButton("FACIL")
+        val normal = JButton("NORMAL")
+        val dificil = JButton("DIFICIL")
+
+        titulo.font = titulo.font.deriveFont(50F)
+
+        facil.addActionListener { Snake(1).isVisible = true }
+        normal.addActionListener { Snake(2).isVisible = true }
+        dificil.addActionListener { Snake(3).isVisible = true }
+        createLayout(titulo, facil, normal, dificil)
+
+        defaultCloseOperation = EXIT_ON_CLOSE
+        setSize(400, 300)
+        setLocationRelativeTo(null)
     }
 
+    //Esta funcion crea el panel donde se mostrara junto con la configuracion para mover el texto
+    private fun createLayout(vararg arg: JComponent) {
+
+        val gl = GroupLayout(contentPane)
+        contentPane.layout = gl
+
+        gl.autoCreateContainerGaps = true
+        gl.autoCreateGaps = true
+        gl.setHorizontalGroup(
+            gl.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(arg[0]).addGap(60, 150, Integer.MAX_VALUE)
+                .addComponent(arg[1])
+                .addComponent(arg[2])
+                .addComponent(arg[3])
+        )
+
+        gl.setVerticalGroup(
+            gl.createSequentialGroup()
+                .addComponent(arg[0])
+                .addGap(30).addComponent(arg[1])
+                .addComponent(arg[2])
+                .addComponent(arg[3])
+        )
+        pack()
+    }
+}
+
+fun showUI() {
+
+    val frame = Menu("Snake")
+    frame.isVisible = true
 }
